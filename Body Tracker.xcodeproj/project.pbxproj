@@ -13,6 +13,7 @@
 		D0EE197E19F7FC9700E21F6D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EE197D19F7FC9700E21F6D /* Images.xcassets */; };
 		D0EE198119F7FC9700E21F6D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EE197F19F7FC9700E21F6D /* LaunchScreen.xib */; };
 		D0EE198D19F7FC9700E21F6D /* Body_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE198C19F7FC9700E21F6D /* Body_TrackerTests.swift */; };
+		D0EE199719F7FCA400E21F6D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EE199619F7FCA400E21F6D /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,8 @@
 		D0EE198619F7FC9700E21F6D /* Body TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Body TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0EE198B19F7FC9700E21F6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0EE198C19F7FC9700E21F6D /* Body_TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Body_TrackerTests.swift; sourceTree = "<group>"; };
+		D0EE199619F7FCA400E21F6D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		D0EE199819F7FCA500E21F6D /* Body Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Body Tracker.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EE199719F7FCA400E21F6D /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +81,7 @@
 		D0EE197319F7FC9700E21F6D /* Body Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				D0EE199819F7FCA500E21F6D /* Body Tracker.entitlements */,
 				D0EE197619F7FC9700E21F6D /* AppDelegate.swift */,
 				D0EE197819F7FC9700E21F6D /* ViewController.swift */,
 				D0EE197A19F7FC9700E21F6D /* Main.storyboard */,
@@ -90,6 +95,7 @@
 		D0EE197419F7FC9700E21F6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D0EE199619F7FCA400E21F6D /* HealthKit.framework */,
 				D0EE197519F7FC9700E21F6D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -161,6 +167,12 @@
 				TargetAttributes = {
 					D0EE197019F7FC9700E21F6D = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = H69TS4DPUJ;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					D0EE198519F7FC9700E21F6D = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -336,9 +348,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Body Tracker/Body Tracker.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Body Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -346,9 +362,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Body Tracker/Body Tracker.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Body Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -405,6 +425,7 @@
 				D0EE199219F7FC9700E21F6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0EE199319F7FC9700E21F6D /* Build configuration list for PBXNativeTarget "Body TrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +434,7 @@
 				D0EE199519F7FC9700E21F6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

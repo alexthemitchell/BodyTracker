@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Body_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +16,85 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Body Fat %" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LoO-Bw-MeX">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2i4-ib-jeZ">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didClickSave:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0ch-EH-0lR"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weight" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tsS-jB-BfX">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2i4-ib-jeZ" firstAttribute="top" secondItem="LoO-Bw-MeX" secondAttribute="bottom" constant="8" id="4mh-54-nyU"/>
+                            <constraint firstItem="LoO-Bw-MeX" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="5Bs-Xi-Qog"/>
+                            <constraint firstAttribute="centerX" secondItem="tsS-jB-BfX" secondAttribute="centerX" id="Crv-6I-umy"/>
+                            <constraint firstItem="tsS-jB-BfX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="HG8-TA-0zB"/>
+                            <constraint firstItem="LoO-Bw-MeX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="aTw-4f-xH2"/>
+                            <constraint firstItem="LoO-Bw-MeX" firstAttribute="top" secondItem="tsS-jB-BfX" secondAttribute="bottom" constant="8" id="bBg-Gc-INj"/>
+                            <constraint firstAttribute="centerX" secondItem="2i4-ib-jeZ" secondAttribute="centerX" id="g8n-OZ-dDn"/>
+                            <constraint firstItem="tsS-jB-BfX" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="jZ1-77-Yrr"/>
+                            <constraint firstItem="tsS-jB-BfX" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="ohm-5J-7GU"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="LoO-Bw-MeX"/>
+                                <exclude reference="2i4-ib-jeZ"/>
+                                <exclude reference="tsS-jB-BfX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Crv-6I-umy"/>
+                                <exclude reference="HG8-TA-0zB"/>
+                                <exclude reference="jZ1-77-Yrr"/>
+                                <exclude reference="ohm-5J-7GU"/>
+                                <exclude reference="5Bs-Xi-Qog"/>
+                                <exclude reference="aTw-4f-xH2"/>
+                                <exclude reference="bBg-Gc-INj"/>
+                                <exclude reference="4mh-54-nyU"/>
+                                <exclude reference="g8n-OZ-dDn"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="LoO-Bw-MeX"/>
+                                <include reference="2i4-ib-jeZ"/>
+                                <include reference="tsS-jB-BfX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Crv-6I-umy"/>
+                                <include reference="HG8-TA-0zB"/>
+                                <include reference="jZ1-77-Yrr"/>
+                                <include reference="ohm-5J-7GU"/>
+                                <include reference="5Bs-Xi-Qog"/>
+                                <include reference="aTw-4f-xH2"/>
+                                <include reference="bBg-Gc-INj"/>
+                                <include reference="4mh-54-nyU"/>
+                                <include reference="g8n-OZ-dDn"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="bodyFatField" destination="LoO-Bw-MeX" id="SIv-pG-UvW"/>
+                        <outlet property="saveButton" destination="2i4-ib-jeZ" id="CYs-PY-uXe"/>
+                        <outlet property="weightField" destination="tsS-jB-BfX" id="hWr-ET-sqm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="439.5" y="357"/>
         </scene>
     </scenes>
 </document>
