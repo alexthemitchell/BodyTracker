@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func didClickSave(sender: AnyObject) {
+        weightField.resignFirstResponder()
+        bodyFatField.resignFirstResponder()
+        var weight = self.weightField.text as NSString
+        var bodyFat = self.bodyFatField.text as NSString
         var typesToWrite = NSSet(objects:
             HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass as String),
             HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyFatPercentage as String),
@@ -27,19 +31,26 @@ class ViewController: UIViewController {
         
         healthStore.requestAuthorizationToShareTypes(typesToWrite, readTypes: typesToRead, completion: { (success : Bool, error : NSError!) -> Void in
             if success {
-                self.saveStats((self.weightField.text as NSString).doubleValue, fatPercent: (self.bodyFatField.text as NSString).doubleValue)
+                self.saveStats(weight.doubleValue, fatPercent: bodyFat.doubleValue)
+                
             }
+            
         })
+        self.weightField.text = ""
+        self.bodyFatField.text = ""
+        self.showSuccess()
+        
+        
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func showSuccess(){
+        UIAlertView(title: "Saved!", message: "Your stats have been saved.", delegate: nil, cancelButtonTitle: "Thanks!").show()
     }
-    
     func saveStats(weight: Double, fatPercent : Double){
         if (weight != 0.0){
             var massObject = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass as String)
             var entry = HKQuantitySample(type: massObject, quantity: HKQuantity(unit: HKUnit(fromString: "lb"), doubleValue: weight), startDate: NSDate(), endDate: NSDate())
             healthStore.saveObject(entry, withCompletion: { (success: Bool, error: NSError!) -> Void in
+                
                 if (success){
                     println("Saved Weight")
                 }
@@ -61,7 +72,6 @@ class ViewController: UIViewController {
             })
             
         }
-        
         let heightType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight as String)
     }
     
