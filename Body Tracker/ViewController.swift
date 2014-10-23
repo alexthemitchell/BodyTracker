@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import LocalAuthentication
 
 class ViewController: UIViewController {
     let healthStore = HKHealthStore()
@@ -39,8 +40,25 @@ class ViewController: UIViewController {
         self.weightField.text = ""
         self.bodyFatField.text = ""
         self.showSuccess()
-        
-        
+    }
+    
+    func showVerify(){
+        var context = LAContext()
+        var authError : NSErrorPointer = nil
+        if (context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: authError)){
+            context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "Please verify you own this device", reply: { (success : Bool, error: NSError!) -> Void in
+                if (success){
+                }
+                else {
+                    self.showVerify()
+                }
+            })
+            
+        }
+    }
+    
+    override func viewDidLoad() {
+        showVerify()
     }
     func showSuccess(){
         UIAlertView(title: "Saved!", message: "Your stats have been saved.", delegate: nil, cancelButtonTitle: "Thanks!").show()

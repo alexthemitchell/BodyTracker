@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D09C8A4619F98C78004E9740 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09C8A4519F98C78004E9740 /* LocalAuthentication.framework */; };
 		D0EE197719F7FC9700E21F6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE197619F7FC9700E21F6D /* AppDelegate.swift */; };
 		D0EE197919F7FC9700E21F6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EE197819F7FC9700E21F6D /* ViewController.swift */; };
 		D0EE197C19F7FC9700E21F6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EE197A19F7FC9700E21F6D /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D09C8A4519F98C78004E9740 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		D0EE197119F7FC9700E21F6D /* Body Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Body Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0EE197519F7FC9700E21F6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0EE197619F7FC9700E21F6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D09C8A4619F98C78004E9740 /* LocalAuthentication.framework in Frameworks */,
 				D0EE199719F7FCA400E21F6D /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +98,7 @@
 		D0EE197419F7FC9700E21F6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D09C8A4519F98C78004E9740 /* LocalAuthentication.framework */,
 				D0EE199619F7FCA400E21F6D /* HealthKit.framework */,
 				D0EE197519F7FC9700E21F6D /* Info.plist */,
 			);
