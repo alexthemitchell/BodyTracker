@@ -15,28 +15,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var bodyFatField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var flightIndicator: UILabel!
+    @IBOutlet weak var flightStepper: UIStepper!
     
+    @IBAction func didClickAddFlights(sender: AnyObject) {
+        addFlights(flightStepper.value)
+    }
     
     @IBAction func didClickSave(sender: AnyObject) {
         weightField.resignFirstResponder()
         bodyFatField.resignFirstResponder()
         var weight = self.weightField.text as NSString
         var bodyFat = self.bodyFatField.text as NSString
-        var typesToWrite = NSSet(objects:
-            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass as String),
-            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyFatPercentage as String),
-            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex as String))
         
-        var typesToRead = NSSet(object:
-            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight as String))
+        requestAuthorization()
+        self.saveStats(weight.doubleValue, fatPercent: bodyFat.doubleValue)
         
-        healthStore.requestAuthorizationToShareTypes(typesToWrite, readTypes: typesToRead, completion: { (success : Bool, error : NSError!) -> Void in
-            if success {
-                self.saveStats(weight.doubleValue, fatPercent: bodyFat.doubleValue)
-                
-            }
-            
-        })
         self.weightField.text = ""
         self.bodyFatField.text = ""
         self.showSuccess()
@@ -56,7 +50,25 @@ class ViewController: UIViewController {
             
         }
     }
+    func requestAuthorization(){
+        var typesToWrite = NSSet(objects:
+            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass as String),
+            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyFatPercentage as String),
+            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex as String),
+            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed))
+        
+        var typesToRead = NSSet(object:
+            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight as String))
+        healthStore.requestAuthorizationToShareTypes(typesToWrite, readTypes: typesToRead, completion: { (success : Bool, error : NSError!) -> Void in
+            println("Authorization Requested")
+        })
+        
+    }
     
+    @IBAction func didChangeFlightCount(sender: AnyObject) {
+        flightIndicator.text = "\(Int(flightStepper.value))" + (flightStepper.value == 1.0 ? " Flight" : " Flights")
+        
+    }
     override func viewDidLoad() {
         showVerify()
     }
@@ -92,7 +104,22 @@ class ViewController: UIViewController {
         }
         let heightType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight as String)
     }
-    
+    func addFlights(flights : Double) {
+        requestAuthorization()
+        var flightObject = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed as String)
+        var entry = HKQuantitySample(type: flightObject, quantity: HKQuantity(unit: HKUnit.countUnit(), doubleValue: flights), startDate: NSDate(), endDate: NSDate())
+        healthStore.saveObject(entry, withCompletion: { (success: Bool, error: NSError!) -> Void in
+            if (success){
+                println("Saved \(flights) new flights climbed")
+                self.showSuccess()
+                self.flightIndicator.text = "1 Flight"
+                self.flightStepper.value = 1.0
+            }
+            else {
+                println(error.userInfo)
+            }
+        })
+    }
     func BMI(inches : Double, weight: Double) -> Double {
         return 0
     }
